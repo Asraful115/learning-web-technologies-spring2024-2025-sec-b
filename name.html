@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Validation</title>
+    <script>
+        function validateName() {
+            let name = document.getElementById("name").value.trim();
+            let nameError = document.getElementById("nameError");
+
+            // Regular expression: At least two words, must start with a letter, allows dot (.) or dash (-)
+            let regex = /^[A-Za-z][A-Za-z.-]*\s[A-Za-z.-]+$/;
+
+            if (name === "") {
+                nameError.textContent = "Name cannot be empty.";
+                return false;
+            }
+            if (!regex.test(name)) {
+                nameError.textContent = "Must contain at least two words, starting with a letter, and can include dot (.) or dash (-).";
+                return false;
+            }
+            nameError.textContent = "";
+            return true;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").addEventListener("submit", function (event) {
+                if (!validateName()) {
+                    event.preventDefault(); // Prevent form submission if validation fails
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Name Validation</h2>
+    <form>
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name">
+        <span id="nameError" style="color: red;"></span>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

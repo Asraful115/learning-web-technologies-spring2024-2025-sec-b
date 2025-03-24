@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Selection Validation</title>
+    <script>
+        function validateGender() {
+            let male = document.getElementById("male").checked;
+            let female = document.getElementById("female").checked;
+            let other = document.getElementById("other").checked;
+            let genderError = document.getElementById("genderError");
+
+            if (!male && !female && !other) {
+                genderError.textContent = "Please select your gender.";
+                return false;
+            }
+            genderError.textContent = "";
+            return true;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").addEventListener("submit", function (event) {
+                if (!validateGender()) {
+                    event.preventDefault(); // Prevent form submission if validation fails
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Gender Selection Validation</h2>
+    <form>
+        <label>Select Gender:</label><br>
+        <input type="radio" name="gender" id="male"> Male<br>
+        <input type="radio" name="gender" id="female"> Female<br>
+        <input type="radio" name="gender" id="other"> Other<br>
+        <span id="genderError" style="color: red;"></span>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
+
